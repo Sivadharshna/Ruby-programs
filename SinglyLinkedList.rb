@@ -1,11 +1,11 @@
 class Node
-    @data
-    @next 
+    attr_accessor :data
+    attr_accessor :next 
     def initialize d
         @data=d
         @next=nil
     end
-    def next= node
+=begin    def next= node
         @next=node
     end
     def get_data
@@ -14,6 +14,7 @@ class Node
     def get_next
         return @next
     end
+=end
 end
 
 class LinkedList
@@ -27,8 +28,8 @@ class LinkedList
             @@head=newnode
             @@tail=newnode
         else
-            @@tail.next= newnode
-            @@tail=@@tail.get_next
+            @@tail.next=newnode
+            @@tail=@@tail.next
         end
     end
         
@@ -36,19 +37,19 @@ class LinkedList
         puts "Enter the value to be deleted"
         val=gets.to_i
         current=@@head
-        if @@head.get_data == val 
+        if @@head.data == val 
             temp=@@head
-            @@head=@@head.get_next 
+            @@head=@@head.next
             temp=nil
         else
-            while current.get_next !=nil && (current.get_next).get_data != val
-                current=current.get_next
+            while current.next !=nil && (current.next).data != val
+                current=current.next
             end
-            if(current.get_next ==nil)
+            if(current.next ==nil)
                 puts "Data not fount"
             else
-                temp=current.get_next
-                current.next= current.get_next.get_next
+                temp=current.next
+                current.next= current.next.next
                 temp=nil
             end
         end
@@ -60,9 +61,9 @@ class LinkedList
         else
             current=@@head
             while current!=nil 
-                print current.get_data
+                print current.data
                 print " -> "
-                current=current.get_next 
+                current=current.next 
             end
         end
     end
